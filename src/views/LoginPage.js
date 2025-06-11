@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { login } from "../services/authService";
 import "./LoginPage.css";
 
 function LoginPage() {
@@ -10,12 +12,27 @@ function LoginPage() {
     password: "",
   });
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle login logic here
     console.log("Login attempt:", formData);
-    // if success
-    navigate("/platform");
+
+    try {
+      const response = await login(formData);
+      if (response.status === 200) {
+        // if success
+        // THEN IF SUCCESS NAVIGATE TO PLATFORM PAGE
+        console.log(response.data);
+        localStorage.setItem("token", response.data.userData.token);
+        navigate("/platform");
+      } else if (response.status === 401) {
+        setError(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (e) => {
@@ -24,6 +41,12 @@ function LoginPage() {
       [e.target.name]: e.target.value,
     });
   };
+
+  useEffect(() => {
+    if (localStorage.token) {
+      navigate("/platform");
+    }
+  }, []);
 
   return (
     <div className="login-container">
@@ -56,6 +79,7 @@ function LoginPage() {
           />
         </div>
 
+        <p className="error-message"> {error} </p>
         <button type="submit">Login</button>
       </form>
     </div>
