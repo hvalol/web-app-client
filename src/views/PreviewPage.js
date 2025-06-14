@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./PreviewPage.css";
+
 function PreviewPage() {
   const navigate = useNavigate();
   const { templateId } = useParams();
@@ -47,14 +48,37 @@ function PreviewPage() {
           setPreviewUrl("http://localhost:3001");
           break;
         case "2":
-          console.log("not yet implemented");
+          try {
+            await axios.post(`${WEB_APP_2_API_URL}/users`, { id: userId });
+          } catch (error) {
+            // Ignore if user already exists (409 Conflict)
+            if (error.response?.status !== 409) {
+              throw error;
+            }
+          }
           setPreviewUrl("http://localhost:3002");
           break;
         case "3":
-          console.log("not yet implemented");
+          try {
+            await axios.post(`${WEB_APP_3_API_URL}/users`, { id: userId });
+          } catch (error) {
+            // Ignore if user already exists (409 Conflict)
+            if (error.response?.status !== 409) {
+              throw error;
+            }
+          }
+          setPreviewUrl("http://localhost:3003");
           break;
         case "4":
-          console.log("not yet implemented");
+          try {
+            await axios.post(`${WEB_APP_4_API_URL}/users`, { id: userId });
+          } catch (error) {
+            // Ignore if user already exists (409 Conflict)
+            if (error.response?.status !== 409) {
+              throw error;
+            }
+          }
+          setPreviewUrl("http://localhost:3004");
           break;
 
         // Add cases for other templates when implemented
@@ -65,7 +89,14 @@ function PreviewPage() {
       console.error("Preview error:", error);
       setError(error.message || "Failed to load preview");
     }
-  }, [API_URL, WEB_APP_1_API_URL, templateId]);
+  }, [
+    API_URL,
+    WEB_APP_1_API_URL,
+    WEB_APP_2_API_URL,
+    WEB_APP_3_API_URL,
+    WEB_APP_4_API_URL,
+    templateId,
+  ]);
 
   useEffect(() => {
     getPreview();
