@@ -13,48 +13,6 @@ body {
   /* text-align: center; // Keep this if you want global centering, or handle per component */
 }
 
-/* Navigation Styles */
-.main-navigation {
-  background-color: #2c3e50; /* A darker, professional blue */
-  padding: 12px 20px; /* Slightly more padding */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.main-navigation ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.main-navigation ul li {
-  display: inline-block;
-  margin: 0 18px; /* Slightly more spacing */
-}
-
-.main-navigation ul li a {
-  color: #ecf0f1; /* Lighter text color for contrast */
-  text-decoration: none;
-  font-size: 1.1em;
-  font-weight: 500; /* Slightly bolder */
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-
-.main-navigation ul li a:hover,
-.main-navigation ul li a.active {
-  /* For NavLink active state */
-  background-color: #3498db; /* A primary blue for hover/active */
-  color: #fff;
-}
-
-.nav-hr {
-  border: none;
-  border-top: 1px solid #dde4e9; /* Lighter separator */
-  margin: 0;
-}
-
 .content-area {
   padding: 25px; /* More padding around content */
   max-width: 1200px; /* Max width for content area */
