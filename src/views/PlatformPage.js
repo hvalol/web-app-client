@@ -57,7 +57,7 @@ function PlatformPage() {
       <div className="platform-header">
         <h1>Website Templates</h1>
         <p className="subtitle">
-          Select one of our professionally designed website templates to preview
+          Select a pre-built website application to preview
         </p>
       </div>
 

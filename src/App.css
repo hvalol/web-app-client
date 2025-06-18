@@ -13,12 +13,6 @@ body {
   /* text-align: center; // Keep this if you want global centering, or handle per component */
 }
 
-.content-area {
-  padding: 25px; /* More padding around content */
-  max-width: 1200px; /* Max width for content area */
-  margin: 0 auto; /* Center content area */
-}
-
 /* General Loading and Error states */
 .loading-state,
 .error-state {
